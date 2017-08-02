@@ -1,6 +1,6 @@
-﻿namespace LimitlessLedWinForms
+﻿namespace LimitlessLedWinForms.V5
 {
-	partial class Form1
+	partial class FormV5
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -30,11 +30,11 @@
 		{
 			this.ipTextBox = new System.Windows.Forms.TextBox();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.radioButton4 = new System.Windows.Forms.RadioButton();
+			this.radioButton3 = new System.Windows.Forms.RadioButton();
+			this.radioButton2 = new System.Windows.Forms.RadioButton();
 			this.radioButton1 = new System.Windows.Forms.RadioButton();
 			this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
-			this.radioButton2 = new System.Windows.Forms.RadioButton();
-			this.radioButton3 = new System.Windows.Forms.RadioButton();
-			this.radioButton4 = new System.Windows.Forms.RadioButton();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -46,7 +46,7 @@
 			this.ipTextBox.Name = "ipTextBox";
 			this.ipTextBox.Size = new System.Drawing.Size(259, 20);
 			this.ipTextBox.TabIndex = 0;
-			this.ipTextBox.Text = "192.168.9.3";
+			this.ipTextBox.Text = "192.168.9.2";
 			// 
 			// groupBox1
 			// 
@@ -62,6 +62,42 @@
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Light Group";
+			// 
+			// radioButton4
+			// 
+			this.radioButton4.AutoSize = true;
+			this.radioButton4.Location = new System.Drawing.Point(7, 89);
+			this.radioButton4.Name = "radioButton4";
+			this.radioButton4.Size = new System.Drawing.Size(63, 17);
+			this.radioButton4.TabIndex = 3;
+			this.radioButton4.TabStop = true;
+			this.radioButton4.Text = "Group 4";
+			this.radioButton4.UseVisualStyleBackColor = true;
+			this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+			// 
+			// radioButton3
+			// 
+			this.radioButton3.AutoSize = true;
+			this.radioButton3.Location = new System.Drawing.Point(7, 66);
+			this.radioButton3.Name = "radioButton3";
+			this.radioButton3.Size = new System.Drawing.Size(63, 17);
+			this.radioButton3.TabIndex = 2;
+			this.radioButton3.TabStop = true;
+			this.radioButton3.Text = "Group 3";
+			this.radioButton3.UseVisualStyleBackColor = true;
+			this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+			// 
+			// radioButton2
+			// 
+			this.radioButton2.AutoSize = true;
+			this.radioButton2.Location = new System.Drawing.Point(7, 43);
+			this.radioButton2.Name = "radioButton2";
+			this.radioButton2.Size = new System.Drawing.Size(63, 17);
+			this.radioButton2.TabIndex = 1;
+			this.radioButton2.TabStop = true;
+			this.radioButton2.Text = "Group 2";
+			this.radioButton2.UseVisualStyleBackColor = true;
+			this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
 			// 
 			// radioButton1
 			// 
@@ -89,42 +125,6 @@
 			this.hScrollBar1.Value = 1;
 			this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
 			this.hScrollBar1.ValueChanged += new System.EventHandler(this.hScrollBar1_ValueChanged);
-			// 
-			// radioButton2
-			// 
-			this.radioButton2.AutoSize = true;
-			this.radioButton2.Location = new System.Drawing.Point(7, 43);
-			this.radioButton2.Name = "radioButton2";
-			this.radioButton2.Size = new System.Drawing.Size(63, 17);
-			this.radioButton2.TabIndex = 1;
-			this.radioButton2.TabStop = true;
-			this.radioButton2.Text = "Group 2";
-			this.radioButton2.UseVisualStyleBackColor = true;
-			this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-			// 
-			// radioButton3
-			// 
-			this.radioButton3.AutoSize = true;
-			this.radioButton3.Location = new System.Drawing.Point(7, 66);
-			this.radioButton3.Name = "radioButton3";
-			this.radioButton3.Size = new System.Drawing.Size(63, 17);
-			this.radioButton3.TabIndex = 2;
-			this.radioButton3.TabStop = true;
-			this.radioButton3.Text = "Group 3";
-			this.radioButton3.UseVisualStyleBackColor = true;
-			this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
-			// 
-			// radioButton4
-			// 
-			this.radioButton4.AutoSize = true;
-			this.radioButton4.Location = new System.Drawing.Point(7, 89);
-			this.radioButton4.Name = "radioButton4";
-			this.radioButton4.Size = new System.Drawing.Size(63, 17);
-			this.radioButton4.TabIndex = 3;
-			this.radioButton4.TabStop = true;
-			this.radioButton4.Text = "Group 4";
-			this.radioButton4.UseVisualStyleBackColor = true;
-			this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
 			// 
 			// Form1
 			// 

@@ -5,13 +5,13 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LimitlessLedWinForms
+namespace LimitlessLedWinForms.V5
 {
-	public class LimitlessLed : IDisposable
+	public class LimitlessLedV5 : IDisposable
 	{
 		protected UdpClient udpClient;
 
-		public LimitlessLed(string ip)
+		public LimitlessLedV5(string ip)
 		{
 			udpClient = new UdpClient(ip, 8899);
 		}

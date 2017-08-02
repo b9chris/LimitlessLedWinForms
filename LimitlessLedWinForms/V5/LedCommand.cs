@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LimitlessLedWinForms
+namespace LimitlessLedWinForms.V5
 {
 	/// <summary>
 	/// http://www.limitlessled.com/dev/

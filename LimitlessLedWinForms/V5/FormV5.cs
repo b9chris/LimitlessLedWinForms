@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LimitlessLedWinForms
+namespace LimitlessLedWinForms.V5
 {
-	public partial class Form1 : Form
+	public partial class FormV5 : Form
 	{
 		protected int lightGroupRadio = 0;
 
-		public Form1()
+		public FormV5()
 		{
 			InitializeComponent();
 		}
@@ -70,7 +70,7 @@ namespace LimitlessLedWinForms
 
 			Task.Run(async () =>
 			{
-				using (var leds = new LimitlessLed(ip))
+				using (var leds = new LimitlessLedV5(ip))
 				{
 					if (brightness == 1)
 					{

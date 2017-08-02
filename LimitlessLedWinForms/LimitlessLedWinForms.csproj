@@ -44,18 +44,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Brass9\Threading.TPL\TaskHelper.cs" />
+    <Compile Include="V5\FormV5.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="V5\FormV5.Designer.cs">
+      <DependentUpon>FormV5.cs</DependentUpon>
     </Compile>
-    <Compile Include="LedCommand.cs" />
-    <Compile Include="LimitlessLed.cs" />
+    <Compile Include="V5\LedCommand.cs" />
+    <Compile Include="V5\LimitlessLedV5.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="V6\FormV6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="V6\FormV6.Designer.cs">
+      <DependentUpon>FormV6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V6\LimitlessLedV6.cs" />
+    <Compile Include="V6\LLedSession.cs" />
+    <EmbeddedResource Include="V5\FormV5.resx">
+      <DependentUpon>FormV5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +75,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="V6\FormV6.resx">
+      <DependentUpon>FormV6.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,6 +91,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -23,7 +23,10 @@ namespace LimitlessLedWinForms
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+			Application.Run(
+				//new LimitlessLedWinForms.V5.FormV5()
+				new LimitlessLedWinForms.V6.FormV6()
+			);
 
 		}
 
