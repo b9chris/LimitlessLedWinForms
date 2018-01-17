@@ -13,6 +13,7 @@ namespace LimitlessLedWinForms.V6
 		protected byte bridge1;
 		protected byte bridge2;
 		protected byte lastSequenceNumber = 0;
+		protected DateTime lastStartTime;
 
 		protected bool[] limitedOn = { false, false, false, false };
 		protected bool[] fullRgbOn = { false, false, false, false };
@@ -28,6 +29,8 @@ namespace LimitlessLedWinForms.V6
 			var buffer = await sendAsync(0x20, 0x00, 0x00, 0x00, 0x16, 0x02, 0x62, 0x3A, 0xD5, 0xED, 0xA3, 0x01, 0xAE, 0x08, 0x2D, 0x46, 0x61, 0x41, 0xA7, 0xF6, 0xDC, 0xAF, 0xD3, 0xE6, 0x00, 0x00, 0x1E);
 			bridge1 = buffer[19];
 			bridge2 = buffer[20];
+			lastSequenceNumber = 0;
+			lastStartTime = DateTime.UtcNow;
 		}
 
 
@@ -72,6 +75,14 @@ namespace LimitlessLedWinForms.V6
 
 		protected async Task sendGroupAsync(int group, byte[] lightCmd)
 		{
+			// Need to periodically renew Session Keys with Bridge.
+			// Sessions are very short, definitely less than 2 minutes.
+			// 1 minute is working in tests
+			var now = DateTime.UtcNow;
+			var sinceLastStart = now - lastStartTime;
+			if (sinceLastStart.TotalSeconds >= 60)
+				await StartAsync();	// Renew the Session first
+
 			var preamble = new byte[] { 0x80, 0x00, 0x00, 0x00, 0x11,
 				bridge1, bridge2, 0x00, (byte)lastSequenceNumber++, 0x00, };
 
@@ -95,7 +106,8 @@ namespace LimitlessLedWinForms.V6
 		{
 			int sum = cmd.Sum(b => (int)b);
 			var bytes = BitConverter.GetBytes(sum);
-			// Endianess; avg Intel x64 is Big Endian
+			// We need to account for local CPU Endianess when converting its ints to bytes
+			// avg Intel x64 is Big Endian, but we'll get it right either way with BitConverter.IsLittleEndian
 			// https://stackoverflow.com/a/1318948/176877
 			byte[] chk;
 			if (BitConverter.IsLittleEndian)

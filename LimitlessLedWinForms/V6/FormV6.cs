@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LimitlessLedWinForms.Brass9.Threading.TPL;
@@ -20,8 +21,10 @@ namespace LimitlessLedWinForms.V6
 		protected int brightness;
 
 		protected DateTime lastUpdate;
-
+		protected bool isThrottleScheduled;
 		protected object lockObj = new object();
+
+		protected StringBuilder log = new StringBuilder();
 
 		public FormV6()
 		{
@@ -73,18 +76,43 @@ namespace LimitlessLedWinForms.V6
 			int amt = 80 - ev.NewValue;
 			brightness = (int)Math.Round(amt / .8m * .64m);
 
+			log.AppendLine("amt " + amt + " b " + brightness);
+
 			// Throttle, don't update more than every 500ms
 			DateTime now = DateTime.UtcNow;
 			lock (lockObj)
 			{
 				var future = lastUpdate.AddSeconds(1);//lastUpdate.AddMilliseconds(500);
 				if (future > now)
+				{
+					if (isThrottleScheduled)
+					{
+						log.AppendLine("thottled");
+						return;
+					}
+
+					isThrottleScheduled = true;
+					log.AppendLine("scheduled");
+					TaskHelper.RunBg(async () =>
+					{
+						await Task.Delay(800);
+						log.AppendLine("tail");
+						updateLight();
+						isThrottleScheduled = false;
+						lastUpdate = DateTime.UtcNow;
+					});
 					return;
+				}
 
 				lastUpdate = now;
 			}
+
+			log.AppendLine("immediate");
 			updateLight();
 		}
+
+
+		protected int isSending = 0;
 
 		protected void updateLight()
 		{
@@ -92,6 +120,10 @@ namespace LimitlessLedWinForms.V6
 
 			TaskHelper.RunBg(async () =>
 			{
+				if (1 == Interlocked.CompareExchange(ref isSending, 1, 0))
+					return;				
+
+				log.AppendLine("group " + group + " b " + brightness);
 				if (isFullRgb)
 				{
 					if (brightness <= 0)
@@ -106,6 +138,8 @@ namespace LimitlessLedWinForms.V6
 					else
 						await leds.Leds.SetLimitedBrightness(group, brightness);
 				}
+
+				isSending = 0;
 			});
 		}
 	}

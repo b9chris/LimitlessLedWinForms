@@ -32,14 +32,12 @@ namespace LimitlessLedWinForms.V6
 			return re;
 		}
 
-		//protected byte lastSequenceNumber = 0;
-
-		//protected async Task<int> sendCmdAsync(UdpClient udp, )
 
 
 		public async Task StartAsync()
 		{
-			udp = makeUdp("192.168.9.2", 5987);
+			udp = makeUdp("192.168.9.4", 5987);
+
 			Leds = new LLedSession(udp);
 			await Leds.StartAsync();
 		}
